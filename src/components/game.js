@@ -78,9 +78,11 @@ class Game extends React.Component {
       <div>
         {console.log(this.state)}
         <Header newGame={() => this.newGame()} infoModal={this.state.infoModal} toggleInfoModal={(() => this.toggleInfoModal())} />
-        <GuessSection feedback={this.state.feedback} submitGuess={(guess) => this.submitGuess(guess, this.state.count)} generateFeedback={(lastGuess) => this.generateFeedback(lastGuess)} win={this.state.win} />
-        <GuessCount count={this.state.count} />
-        <GuessList guesses={this.state.guesses} />
+        <div className="game-wrap">
+          <GuessSection feedback={this.state.feedback} submitGuess={(guess) => this.submitGuess(guess, this.state.count)} generateFeedback={(lastGuess) => this.generateFeedback(lastGuess)} win={this.state.win} />
+          <GuessCount count={this.state.count} />
+          <GuessList guesses={this.state.guesses} />
+        </div>
       </div>
     );
   }

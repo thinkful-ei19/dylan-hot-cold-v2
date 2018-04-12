@@ -49,3 +49,8 @@ ul li {
 	display: inline;
 }
 
+.game-wrap {
+	margin: 0 auto;
+	width: 400px;
+}
+
