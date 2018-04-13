@@ -65,14 +65,6 @@ class Game extends React.Component {
     this.setState({ infoModal: !this.state.infoModal });
   }
 
-  showInfoModal() {
-    this.setState({ infoModal: true });
-  }
-
-  hideInfoModal() {
-    this.setState({ infoModal: false });
-  }
-
   render() {
     return (
       <div>
