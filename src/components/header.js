@@ -1,15 +1,16 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
 import TopNav from './top-nav';
 import InfoModal from './info-modal';
 
 import './header.css';
 
-export default function Header(props) {
+export function Header(props) {
 
-  let headerShowing = <TopNav newGame={props.newGame} toggleInfoModal={props.toggleInfoModal} />;
+  let headerShowing = <TopNav />;
 
-  if (props.infoModal) headerShowing = <InfoModal toggleInfoModal={props.toggleInfoModal} />;
+  if (props.infoModal) headerShowing = <InfoModal />;
 
   return (
     <header>
@@ -18,3 +19,11 @@ export default function Header(props) {
     </header>
   );
 }
+
+export const mapStateToProps = state => {
+  return {
+    infoModal: state.infoModal
+  };
+};
+
+export default connect(mapStateToProps)(Header);

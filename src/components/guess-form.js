@@ -1,8 +1,11 @@
 import React from 'react';
+import { connect } from 'react-redux';
+
+import { submitGuess, generateFeedback } from '../actions';
 
 import './guess-form.css';
 
-export default function GuessForm(props) {
+export function GuessForm(props) {
 
   let submitButton;
   if (!props.win) {
@@ -16,8 +19,12 @@ export default function GuessForm(props) {
       e.preventDefault();
       const guess = e.target.userGuess.value;
       e.target.userGuess.value = '';
-      props.submitGuess(guess);
-      props.generateFeedback(guess);
+      if (props.guesses.includes(guess)) {
+        alert('You already guessed that number!');
+      } else {
+        props.dispatch(submitGuess(guess, props.count));
+      }
+      props.dispatch(generateFeedback(guess));
     }}>
       <input type="number" name="userGuess" id="userGuess"
         className="text" maxLength="3" min="0" max="100" autoComplete="off"
@@ -26,4 +33,14 @@ export default function GuessForm(props) {
     </form>
   );
 }
+
+export const mapStateToProps = state => {
+  return {
+    guesses: state.guesses,
+    count: state.count,
+    win: state.win
+  };
+};
+
+export default connect(mapStateToProps)(GuessForm);
 
